@@ -1,3 +1,5 @@
+// for code.gs of Sheet AppSCript
+
 const BOT_TOKEN = "YOUR_BOT_TOKEN";
 const CHAT_ID = "YOUR_CHAT_ID";
 
