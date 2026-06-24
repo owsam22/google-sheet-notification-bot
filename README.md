@@ -1,5 +1,5 @@
 # Google Sheets to Telegram Notification System
->by (samarpan)[https://samarpan-portfolio.vercel.app]
+>by [Samarpan ](https://samarpan-portfolio.vercel.app)
 
 A lightweight notification system that sends instant Telegram alerts whenever a new row is added to a Google Sheet.
 
