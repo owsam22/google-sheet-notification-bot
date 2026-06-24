@@ -56,7 +56,7 @@ Before starting, make sure you have:
 
 # Step 1: Create a Telegram Bot
 
-Open Telegram and search for:
+Open Telegram and search for: [BotFather](https://telegram.me/BotFather)
 
 ```text
 @BotFather
@@ -346,10 +346,11 @@ Example:
 
 Solution:
 
-1. Open bot chat
-2. Click Start
-3. Send a message
-4. Call getUpdates again
+1. Refresh API URL on Browser
+2. Open bot chat
+3. Click Start
+4. Send a message
+5. Call getUpdates again
 
 ---
 
