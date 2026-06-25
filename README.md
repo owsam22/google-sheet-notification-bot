@@ -24,7 +24,16 @@ This project helps you monitor Google Sheets, Google Forms responses, portfolio 
 - Supports both trigger-based and instant notification methods
 
 ---
+## 🚀 Quick Navigation
 
+- [Which Method Should I Use?](#which-method-should-you-use)
+- [Method 1: Trigger-Based Monitoring](#method-1-trigger-based-monitoring)
+- [Method 2: Instant Notification using doPost() (Recommended)](#method-2-instant-notification-using-dopost-recommended)
+- [Telegram Bot Setup](#step-1-create-a-telegram-bot)
+- [Get Chat ID](#step-2-get-your-chat-id)
+- [Troubleshooting](#troubleshooting)
+
+  
 ## Use Cases
 
 ### Portfolio Contact Forms
