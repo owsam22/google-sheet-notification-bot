@@ -66,7 +66,7 @@ Track new rows added by users, integrations, APIs, or automation tools.
 
 This project supports two different notification methods.
 
-## Method 1: Trigger-Based Monitoring
+## Method 1: Trigger Based Monitoring
 
 Best for:
 
@@ -96,7 +96,7 @@ The script periodically checks the spreadsheet and sends a Telegram notification
 
 ---
 
-## Method 2: Instant Notification using doPost() (Recommended)
+## Method 2: Instant  Notification using doPost() (Recommended)
 
 Best for:
 
