@@ -1,170 +1,82 @@
-# Google Sheets to Telegram Notification System | Real-Time Google Sheets Notifications using Google Apps Script & Telegram Bot API
+# Google Sheets to Telegram Notifier | Real-Time Notifications using Google Apps Script & Telegram Bot API
 
-> By [Samarpan](https://samarpan-portfolio.vercel.app)
+> By Samarpan
 
-Receive instant Telegram notifications whenever a new entry is added to a Google Sheet using Google Apps Script and Telegram Bot API.
+Get instant Telegram notifications whenever a new entry is added to a Google Sheet. Works with Google Forms, HTML forms, portfolio contact forms, lead generation forms, customer inquiries, and spreadsheet monitoring.
 
-This project helps you monitor Google Sheets, Google Forms responses, portfolio contact forms, customer inquiries, lead generation forms, feedback forms, and other spreadsheet-based workflows without constantly checking your sheet.
+---
+
+## 🚀 Quick Navigation
+
+> **Using a Website Contact Form or HTML Form?**
+>
+> 👉 Jump to **[Method 2: Instant Notifications with doPost()](#method-2-instant-notifications-with-dopost-recommended)**
+
+* [Features](#features)
+* [Which Method Should I Use?](#which-method-should-i-use)
+* [Telegram Bot Setup](#step-1-create-a-telegram-bot)
+* [Get Chat ID](#step-2-get-your-chat-id)
+* [Method 1: Trigger-Based Monitoring](#method-1-trigger-based-monitoring)
+* [Method 2: Instant Notifications with doPost()](#method-2-instant-notifications-with-dopost-recommended)
+* [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Features
 
-- Real-time Telegram notifications
-- Works with Google Sheets
-- Works with Google Forms
-- Works with custom HTML forms
-- Google Apps Script based
-- No backend server required
-- No database required
-- No hosting required
-- Free to use
-- Lightweight setup
-- Native mobile notifications through Telegram
-- Supports both trigger-based and instant notification methods
-
----
-## 🚀 Quick Navigation
-
-- [Which Method Should I Use?](#which-method-should-you-use)
-- [Method 1: Trigger-Based Monitoring](#method-1-trigger-based-monitoring)
-- [Method 2: Instant Notification using doPost() (Recommended)](#method-2-instant-notification-using-dopost-recommended)
-- [Telegram Bot Setup](#step-1-create-a-telegram-bot)
-- [Get Chat ID](#step-2-get-your-chat-id)
-- [Troubleshooting](#troubleshooting)
-
-  
-## Use Cases
-
-### Portfolio Contact Forms
-
-Get notified instantly when someone submits your portfolio contact form.
-
-### Lead Generation
-
-Receive Telegram alerts whenever a new lead is added to your Google Sheet.
-
-### Customer Inquiries
-
-Monitor customer messages without manually checking spreadsheets.
-
-### Feedback Collection
-
-Get instant notifications when users submit feedback.
-
-### Google Form Responses
-
-Receive Telegram notifications whenever a Google Form receives a new response.
-
-### Spreadsheet Monitoring
-
-Track new rows added by users, integrations, APIs, or automation tools.
+* Real-time Telegram notifications
+* Google Sheets monitoring
+* Google Forms notifications
+* HTML form notifications
+* Portfolio contact form alerts
+* No backend required
+* No database required
+* Free to use
+* Easy setup
+* Mobile notifications through Telegram
 
 ---
 
-# How It Works
+# Which Method Should I Use?
 
-This project supports two different notification methods.
+| Use Case                       | Recommended Method |
+| ------------------------------ | ------------------ |
+| Google Forms                   | Method 1           |
+| Existing Google Sheet          | Method 1           |
+| Manual Spreadsheet Entry       | Method 1           |
+| Shared Spreadsheet             | Method 1           |
+| Portfolio Website Contact Form | Method 2           |
+| HTML Form                      | Method 2           |
+| Apps Script Web App            | Method 2           |
+| Lead Generation Form           | Method 2           |
 
-## Method 1: Trigger-Based Monitoring
+### Method 1
 
-Best for:
+Uses a scheduled Apps Script trigger to monitor a Google Sheet and detect new rows.
 
-- Google Forms
-- Existing Google Sheets
-- Manual spreadsheet entries
-- Third-party integrations
-- Shared spreadsheets
+### Method 2 (Recommended)
 
-### Flow
+Sends Telegram notifications directly from `doPost()` when form data is submitted.
 
-```text
-Google Sheet
-      ↓
-Apps Script Trigger
-      ↓
-Detect New Row
-      ↓
-Telegram Bot API
-      ↓
-Telegram Notification
-      ↓
-Phone Notification
-```
-
-The script periodically checks the spreadsheet and sends a Telegram notification when it detects a new row.
-
----
-
-## Method 2: Instant Notification using doPost() (Recommended)
-
-Best for:
-
-- Portfolio websites
-- Contact forms
-- Lead generation forms
-- Custom HTML forms
-- Apps Script Web Apps
-
-### Flow
-
-```text
-Website Form
-      ↓
-Apps Script doPost()
-      ↓
-Google Sheet
-      ↓
-Telegram Bot API
-      ↓
-Telegram Notification
-      ↓
-Phone Notification
-```
-
-When a form is submitted, the data is saved to Google Sheets and a Telegram notification is sent instantly.
-
-No triggers required.
-
----
-
-# Prerequisites
-
-Before starting, make sure you have:
-
-- Google Account
-- Google Sheet
-- Telegram Account
+Faster, simpler, and more reliable.
 
 ---
 
 # Step 1: Create a Telegram Bot
 
-Open Telegram and search for:
+Open Telegram and search:
 
 ```text
 @BotFather
 ```
 
-Start a conversation and run:
+Run:
 
 ```text
 /newbot
 ```
 
-Follow the instructions:
-
-1. Enter a bot name
-2. Enter a unique username
-
-Example:
-
-```text
-Bot Name: Sheet Notify Bot
-Username: sheet_notify_bot
-```
-
-BotFather will provide a Bot Token.
+Create your bot and save the Bot Token.
 
 Example:
 
@@ -172,13 +84,11 @@ Example:
 123456789:ABCDefGhIjKlMnOpQrStUvWxYz
 ```
 
-Save this token.
-
 ---
 
 # Step 2: Get Your Chat ID
 
-Open your newly created bot.
+Open your bot.
 
 Click:
 
@@ -188,40 +98,21 @@ Start
 
 Send any message.
 
-Example:
-
-```text
-Hello
-```
-
 Open:
 
 ```text
 https://api.telegram.org/botYOUR_BOT_TOKEN/getUpdates
 ```
 
-Replace:
-
-```text
-YOUR_BOT_TOKEN
-```
-
-with your actual token.
-
 Example response:
 
 ```json
 {
-  "ok": true,
-  "result": [
-    {
-      "message": {
-        "chat": {
-          "id": 123456789
-        }
-      }
+  "message": {
+    "chat": {
+      "id": 123456789
     }
-  ]
+  }
 }
 ```
 
@@ -237,27 +128,26 @@ This is your Chat ID.
 
 # Method 1: Trigger-Based Monitoring
 
-## When Should You Use This?
+### Best For
 
-Use this method if:
+* Google Forms
+* Existing Google Sheets
+* Manual spreadsheet updates
+* Third-party integrations
 
-- You use Google Forms
-- You manually add rows
-- Another application writes data into the sheet
-- You do not have access to a doPost() function
-
----
-
-## Apps Script Code
-
-Replace:
+### How It Works
 
 ```text
-YOUR_BOT_TOKEN
-YOUR_CHAT_ID
+Google Sheet
+      ↓
+Apps Script Trigger
+      ↓
+Detect New Row
+      ↓
+Telegram Notification
 ```
 
-with your own values.
+### Code
 
 ```javascript
 const BOT_TOKEN = "YOUR_BOT_TOKEN";
@@ -286,23 +176,20 @@ function checkForNewRows() {
 
   if (currentRows > previousRows) {
 
-    const message =
-      "🔔 New Entry Added\n\n" +
-      "Sheet: " +
-      sheet.getName();
-
-    const url =
+    UrlFetchApp.fetch(
       "https://api.telegram.org/bot" +
       BOT_TOKEN +
-      "/sendMessage";
-
-    UrlFetchApp.fetch(url, {
-      method: "post",
-      payload: {
-        chat_id: CHAT_ID,
-        text: message
+      "/sendMessage",
+      {
+        method: "post",
+        payload: {
+          chat_id: CHAT_ID,
+          text:
+            "🔔 New Entry Added\n\nSheet: " +
+            sheet.getName()
+        }
       }
-    });
+    );
 
     props.setProperty(
       "LAST_ROW",
@@ -312,21 +199,14 @@ function checkForNewRows() {
 }
 ```
 
----
-
-## Create Trigger
-
-Open:
+### Create Trigger
 
 ```text
 Extensions
 → Apps Script
 → Triggers
-```
+→ Add Trigger
 
-Add Trigger:
-
-```text
 Function:
 checkForNewRows
 
@@ -337,11 +217,7 @@ Frequency:
 Every Minute
 ```
 
-Save and authorize permissions.
-
----
-
-## Example Notification
+### Example Notification
 
 ```text
 🔔 New Entry Added
@@ -351,22 +227,29 @@ Sheet: Form Responses 1
 
 ---
 
-# Method 2: Instant Notification using doPost()
+# Method 2: Instant Notifications with doPost() (Recommended)
 
-## When Should You Use This?
+### Best For
 
-Use this method if:
+* Portfolio websites
+* Contact forms
+* HTML forms
+* Apps Script Web Apps
+* Lead generation forms
 
-- Your HTML form sends data to Apps Script
-- You have a portfolio website
-- You use Apps Script Web Apps
-- You want instant notifications
+### How It Works
 
-This method is recommended.
+```text
+HTML Form
+      ↓
+Apps Script doPost()
+      ↓
+Google Sheet
+      ↓
+Telegram Notification
+```
 
----
-
-## Apps Script Code
+### Code
 
 ```javascript
 const BOT_TOKEN = "YOUR_BOT_TOKEN";
@@ -391,12 +274,6 @@ function doPost(e) {
     message
   ]);
 
-  const telegramMessage =
-    "🔔 New Portfolio Inquiry\n\n" +
-    "👤 Name: " + name + "\n" +
-    "📧 Email: " + email + "\n" +
-    "📱 Phone: " + phone;
-
   UrlFetchApp.fetch(
     "https://api.telegram.org/bot" +
     BOT_TOKEN +
@@ -405,7 +282,11 @@ function doPost(e) {
       method: "post",
       payload: {
         chat_id: CHAT_ID,
-        text: telegramMessage
+        text:
+          "🔔 New Portfolio Inquiry\n\n" +
+          "👤 Name: " + name + "\n" +
+          "📧 Email: " + email + "\n" +
+          "📱 Phone: " + phone
       }
     }
   );
@@ -416,9 +297,7 @@ function doPost(e) {
 }
 ```
 
----
-
-## Example Notification
+### Example Notification
 
 ```text
 🔔 New Portfolio Inquiry
@@ -432,39 +311,18 @@ Notifications typically arrive within a few seconds.
 
 ---
 
-# Which Method Should You Use?
-
-| Scenario | Recommended Method |
-|-----------|-------------------|
-| Google Form Responses | Trigger Method |
-| Existing Google Sheet | Trigger Method |
-| Manual Spreadsheet Entries | Trigger Method |
-| Shared Spreadsheet | Trigger Method |
-| Portfolio Contact Form | doPost Method |
-| HTML Form | doPost Method |
-| Lead Generation Website | doPost Method |
-| Apps Script Web App | doPost Method |
-
-For new projects, the **doPost() method is recommended** because it provides instant notifications and eliminates the need for scheduled spreadsheet monitoring.
-
----
-
 # Troubleshooting
 
-## No Telegram Message Received
+### No Telegram Notification
 
-Verify:
+Check:
 
-- Bot token is correct
-- Chat ID is correct
-- Bot has been started
-- Apps Script permissions are granted
+* Bot token is correct
+* Chat ID is correct
+* Bot has been started
+* Apps Script permissions are granted
 
----
-
-## getUpdates Returns Empty Array
-
-Example:
+### getUpdates Returns Empty Array
 
 ```json
 {
@@ -475,65 +333,33 @@ Example:
 
 Solution:
 
-1. Open your bot
+1. Open the bot
 2. Click Start
 3. Send a message
 4. Run getUpdates again
 
----
+### Notifications Stopped After Deleting Rows
 
-## Sheet Not Found
+This only affects Method 1.
 
-Check:
+The stored row count may become larger than the current row count.
 
-```javascript
-.getSheetByName("Sheet1")
-```
+Fix:
 
-Make sure the name exactly matches your spreadsheet tab.
+* Add enough rows to exceed the stored value
+* Or reset the Script Property
 
----
-
-## Notifications Stopped After Deleting Rows
-
-The trigger-based method stores the previous row count.
-
-If rows are deleted, the stored count may become larger than the actual row count.
-
-Solution:
-
-- Add enough rows to exceed the stored count
-- Or reset the stored value using Script Properties
-
-The doPost() method does not have this issue.
-
----
-
-# Project Structure
-
-```text
-Google Sheet
-│
-├── Google Apps Script
-│
-├── Telegram Bot
-│   ├── Bot Token
-│   └── Chat ID
-│
-└── Notification System
-    ├── Trigger-Based Monitoring
-    └── Instant doPost Notifications
-```
+Method 2 is not affected.
 
 ---
 
 # Technologies Used
 
-- Google Apps Script
-- Google Sheets
-- Telegram Bot API
-- JavaScript
-- HTML Forms
+* Google Apps Script
+* Google Sheets
+* Telegram Bot API
+* JavaScript
+* HTML Forms
 
 ---
 
@@ -545,32 +371,12 @@ google-apps-script
 telegram-bot
 telegram-api
 notifications
-google-workspace
-automation
-spreadsheet-monitoring
 google-forms
-form-notifications
+spreadsheet-monitoring
 telegram-notifications
 javascript
-webhook
-productivity
-portfolio-project
+automation
 ```
-
----
-
-# Future Improvements
-
-- Multiple Telegram recipients
-- Discord notifications
-- Slack notifications
-- Email notifications
-- WhatsApp integration
-- Web dashboard
-- Mobile application
-- Multi-user SaaS platform
-- Push notifications
-- Notification history
 
 ---
 
@@ -579,7 +385,5 @@ portfolio-project
 MIT License
 
 Feel free to use, modify, and distribute this project.
-
----
 
 ⭐ If this project helped you, consider starring the repository.
